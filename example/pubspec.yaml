@@ -1,0 +1,20 @@
+name: starchart_orm_example
+description: A list app demonstrating the use and implementation of Starchart ORM
+version: 0.0.1
+author: Bridget Macfarlane <bridget@stardust-lab.com>
+homepage: https://github.com/Stardust-Labs/starchart_orm
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  starchart_orm:
+    path: ../
+  build_runner:
+  scoped_model: ^1.0.1
+  font_awesome_flutter: ^8.8.1
+
+flutter:
+  uses-material-design: true
