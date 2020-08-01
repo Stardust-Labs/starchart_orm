@@ -6,6 +6,9 @@ import 'package:starchart_orm/src/model/model_exception.dart';
 
 @DefinesTable
 abstract class Mappable {
+  /// Reflects the class and outputs a map whose keys and values
+  /// are taken from the simpleName and gotten value for each value
+  /// declared in the class that is annotated with the `@Column` metadata
   Map<String, dynamic> toMap() {
     ClassMirror classMirror = DefinesTable.reflectType(this.runtimeType);
     InstanceMirror instance = DefinesTable.reflect(this);
@@ -19,6 +22,9 @@ abstract class Mappable {
     return map;
   }
 
+  /// Reflects the instance's class and populates fields with the
+  /// `@Column` metadata from a given [map] where the String key matches
+  /// the simpleName of the annotated value
   @protected
   DatabaseModel generateFromMap<T extends DatabaseModel>(
       Map<String, dynamic> map) {

@@ -10,14 +10,24 @@ import 'package:starchart_orm/src/model/writes_queries.dart';
 export 'package:starchart_orm/src/model/on_conflict_behavior.dart';
 export 'package:starchart_orm/src/model/column.dart';
 
+/// Enables reflection for DatabaseModels so that they can be converted
+/// back and forth between maps
 class DefinesTableReflector extends Reflectable {
   const DefinesTableReflector()
       : super(invokingCapability, staticInvokeCapability,
             declarationsCapability, metadataCapability);
 }
 
+/// Classes that extend DatabaseModel must have this constant as metadata
 const DefinesTable = DefinesTableReflector();
 
+/// Given a class `c` that represents a database model, `c` must:
+/// * extend DatabaseModel with itself as the generic type, eg
+///   `class C extends DatabaseModel<C>`
+/// * have the `@DefinesTable` metadata annotation
+/// * have an integer `id` field annotated with 
+///   `@Column(FieldType.integer, isNullable: true)`
+/// * implement the `table` field with a string
 abstract class DatabaseModel<T> extends Mappable with QueryProps, ModelProps, WritesQueries {
   /// Insert or update the model as needed
   Future<void> save() async {
@@ -28,6 +38,8 @@ abstract class DatabaseModel<T> extends Mappable with QueryProps, ModelProps, Wr
     }
   }
 
+  /// Populates the `@Column` annotated fields of this instance
+  /// from a given [map]
   fromMap<T extends DatabaseModel> (Map<String, dynamic> map) {
     return generateFromMap<T>(map) as T;
   }

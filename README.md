@@ -113,7 +113,6 @@ main async {
     runApp(MyApp());
 }
 
-class MyApp 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -133,22 +132,22 @@ class MyApp extends StatelessWidget {
 ```
 
 ## Roadmap to 0.1.0
-[ ] Add documentation
-[ ] Add tests
-[ ] Expand example to demonstrate all storage functions
-- [ ] Save
-- - [X] Insert
-- - [ ] Update
-- [ ] Find
-- [ ] First
-- [ ] Last
-- [ ] Where
-- [ ] First Where
-- [ ] Last Where
-- [X] All
-- [X] Delete
+- [ ] Add documentation
+- [ ] Add tests
+- [ ] Expand example to demonstrate all storage functions
+- - [ ] Save
+- - - [X] Insert
+- - - [ ] Update
+- - [ ] Find
+- - [ ] First
+- - [ ] Last
+- - [ ] Where
+- - [ ] First Where
+- - [ ] Last Where
+- - [X] All
+- - [X] Delete
 
 ## Roadmap to 1.0.0
-[ ] Provide support for relationships
-[ ] Provide support for upgrade migrations
-[ ] Provide functionality to dump storage for retrieval or secondary storage
+- [ ] Provide support for relationships
+- [ ] Provide support for upgrade migrations
+- [ ] Provide functionality to dump storage, ie for retrieval or secondary storage
