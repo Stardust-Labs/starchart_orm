@@ -15,6 +15,7 @@ dependencies:
   build_runner:
   scoped_model: ^1.0.1
   font_awesome_flutter: ^8.8.1
+  flutter_slidable: ^0.5.5
 
 flutter:
   uses-material-design: true

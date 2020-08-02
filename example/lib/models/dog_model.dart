@@ -16,6 +16,14 @@ class DogModel extends Model {
     notifyListeners();
   }
 
+  void updateDog(int id, String name, int age) async {
+    var dogIndex = this.dogs.indexWhere((dogLookup) => dogLookup.id == id);
+    this.dogs[dogIndex].name = name;
+    this.dogs[dogIndex].age = age;
+    await this.dogs[dogIndex].save();
+    notifyListeners();
+  }
+
   void slaughterDog(Dog deleteDog) {
     dogs.removeWhere((dog) => dog.id == deleteDog.id);
     notifyListeners();
