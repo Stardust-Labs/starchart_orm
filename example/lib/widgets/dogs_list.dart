@@ -5,6 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../models/dog_model.dart';
 import '../storage/dog.dart';
+import 'dog_search.dart';
 
 /// Home page, displays [Dog] list
 class DogsList extends StatelessWidget {
@@ -41,11 +42,10 @@ class DogsList extends StatelessWidget {
       ],
       secondaryActions: <Widget>[
         IconSlideAction(
-          caption: 'Delete',
-          color: Colors.red,
-          icon: FontAwesomeIcons.trash,
-          onTap: () => _promptDelete(context, dog.id)
-        )
+            caption: 'Delete',
+            color: Colors.red,
+            icon: FontAwesomeIcons.trash,
+            onTap: () => _promptDelete(context, dog.id))
       ],
     );
   }
@@ -175,7 +175,17 @@ class DogsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Hello Dogs')),
+      appBar: AppBar(
+        title: Text('Hello Dogs'),
+        actions: <Widget>[
+          IconButton(
+              icon: FaIcon(FontAwesomeIcons.search),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DogSearch()));
+              })
+        ],
+      ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

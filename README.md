@@ -135,13 +135,13 @@ class MyApp extends StatelessWidget {
 - [ ] Add documentation
 - [ ] Add tests
 - [ ] Expand example to demonstrate all storage functions
-- - [ ] Save
+- - [X] Save
 - - - [X] Insert
-- - - [ ] Update
+- - - [X] Update
 - - [ ] Find
 - - [ ] First
 - - [ ] Last
-- - [ ] Where
+- - [X] Where
 - - [ ] First Where
 - - [ ] Last Where
 - - [X] All

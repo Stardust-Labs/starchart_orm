@@ -2,8 +2,12 @@ import 'package:scoped_model/scoped_model.dart';
 import '../storage/dog.dart';
 import 'package:flutter/material.dart';
 
+export '../storage/dog.dart';
+
 class DogModel extends Model {
   List<Dog> dogs;
+  String searchTerm = '';
+  List<Dog> searchedDogs = [];
   DogModel({this.dogs});
 
   static DogModel of(BuildContext context) => ScopedModel.of<DogModel>(context);
@@ -28,5 +32,11 @@ class DogModel extends Model {
     dogs.removeWhere((dog) => dog.id == deleteDog.id);
     notifyListeners();
     deleteDog.delete();
+  }
+
+  void search(String term) async {
+    searchTerm = term;
+    searchedDogs = await Dog().where({'name': searchTerm});
+    notifyListeners();
   }
 }

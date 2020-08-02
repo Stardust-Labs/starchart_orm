@@ -85,6 +85,7 @@ class SqfliteDriver extends StorageContract {
 
     List<Map<String, dynamic>> maps = await db.query(dbModel.table,
         where: whereStatements['where'], whereArgs: whereStatements['args']);
+        
     return List.generate(maps.length, (index) {
       return dbModel.fromMap(maps[index]) as T;
     });
@@ -119,12 +120,12 @@ class SqfliteDriver extends StorageContract {
 
   Map<String, dynamic> _buildWhereStatements(Map<String, dynamic> args) {
     String whereQuery = '';
-    List<dynamic> whereArgs;
+    List<dynamic> whereArgs = [];
     args.forEach((column, arg) {
-      whereQuery += '$column = ?, ';
+      whereQuery += '"$column" = ?, ';
       whereArgs.add(arg);
     });
-    whereQuery = whereQuery.replaceAll(r', $', '');
+    whereQuery = whereQuery.replaceAll(new RegExp(r', $'), '');
 
     return {'where': whereQuery, 'args': whereArgs};
   }
