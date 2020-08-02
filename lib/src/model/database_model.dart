@@ -38,48 +38,78 @@ abstract class DatabaseModel<T> extends Mappable with QueryProps, ModelProps, Wr
     }
   }
 
-  /// Populates the `@Column` annotated fields of this instance
-  /// from a given [map]
+  /// Populates the `@Column` annotated fields of this 
+  /// instance from a given [map]
   fromMap<T extends DatabaseModel> (Map<String, dynamic> map) {
     return generateFromMap<T>(map) as T;
   }
 
-  /// Wrapper for the [Storage] find method
+  /// Returns an instance of class `T` populated from the storage record
+  /// with the provided [id].  Throws a [DatabaseException] if storage has
+  /// not been initialized.  
+  /// 
+  /// Wraps the `find` method of the active storage driver.
   Future<T> find(int id) async {
     return await Storage.find(this, id) as T;
   }
 
-  /// Wrapper for the [Storage] first method
+  /// Returns the first record in the model's `table`, sorted by `id`
+  /// ascending.  Throws a [DatabaseException] if storage has not been
+  /// initialized.
+  /// 
+  /// Wraps `first` method of the active storage driver.
   Future<T> first() async {
     return await Storage.first(this);
   }
 
-  /// Wrapper for the [Storage] last method
+  /// Returns the last record in the model's `table`, sorted by `id`
+  /// descending.  Throws a [DatabaseException] if storage has not been
+  /// initialized.
+  /// 
+  /// Wraps the `last` method of the active storage driver.
   Future<T> last() async {
     return await Storage.last(this);
   }
 
-  /// Wrapper for the [Storage] where method
+  /// Returns a list of records in the model's `table`, sorted by id
+  /// ascending, where properties given in [args] are equal.  Throws a 
+  /// [DatabaseException] if storage has not been initialized.
+  /// 
+  /// Wraps the `where` method of the active storage driver.
   Future<List<T>> where(Map<String, dynamic> args) async {
     return await Storage.where(this, args);
   }
 
-  /// Wrapper for the [Storage] firstWhere method
+  /// Returns the first record in the model's `table`, sorted by id
+  /// ascending, where properties given in [args] are equal.  Throws a 
+  /// [DatabaseException] if storage has not been initialized.
+  /// 
+  /// Wraps the `firstWhere` method of the active storage driver.
   Future<T> firstWhere(Map<String, dynamic> args) async {
     return await Storage.firstWhere(this, args);
   }
 
-  /// Wrapper for the [Storage] lastWhere method
+  /// Returns the last record in the model's `table`, sorted by id
+  /// ascending, where properties given in [args] are equal.  Throws a 
+  /// [DatabaseException] if storage has not been initialized.
+  /// 
+  /// Wraps `lastWhere` method of the active storage driver.
   Future<T> lastWhere(Map<String, dynamic> args) async {
     return await Storage.lastWhere(this, args);
   }
 
-  /// Wrapper for the [Storage] all method
+  /// Returns all records in the model's `table`.  Throws a [DatabaseException] 
+  /// if storage has not been initialized.
+  /// 
+  /// Wraps the `all` method of the active storage driver.
   Future<List<T>> all() async {
     return await Storage.all(this);
   }
 
-  /// [Delete] the model from the database
+  /// Deletes the model from its `table`, based on id.  Throws a 
+  /// [DatabaseException] if storage has not been initialized.
+  /// 
+  /// Wraps the `delete` method of the active storage driver.
   Future<void> delete() async {
     await Storage.delete(this);
     id = null;

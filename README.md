@@ -150,4 +150,5 @@ class MyApp extends StatelessWidget {
 ## Roadmap to 1.0.0
 - [ ] Provide support for relationships
 - [ ] Provide support for upgrade migrations
+- [ ] Implement on-conflict behavior for all storage drivers
 - [ ] Provide functionality to dump storage, ie for retrieval or secondary storage
