@@ -3,6 +3,7 @@ import 'package:starchart_orm/src/database/database_config.dart';
 
 export 'package:starchart_orm/src/model/database_model.dart';
 
+/// Drivers must extend the StorageContract in order to be valid
 abstract class StorageContract {
   DatabaseConfig get config;
   Future<dynamic> init(
